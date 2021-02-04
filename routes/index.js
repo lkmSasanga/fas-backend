@@ -5,7 +5,7 @@ router.get('/api', function(req, res) {
     res.send("Welcome to API!");
 });
 
-require('./AuthRoutes')(router);
+// require('./AuthRoutes')(router);
 
 
-module.exports.router = ro
+module.exports.router = router

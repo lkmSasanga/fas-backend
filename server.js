@@ -1,14 +1,11 @@
 const express = require('express')
-const cors = require('cors')
 const mongoose = require('mongoose')
-
 
 require('dotenv').config()
 
 const app = express()
 const port = process.env.PORT || 5000
 
-app.use(cors())
 app.use(express.json())
 
 
@@ -21,8 +18,10 @@ connection.once('open', () => {
 }).on('error', function(err) { console.log('Error', err) })
 
 const sentimentRouter = require('./routes/sentiment')
+// const AuthRoutes = require('./routes/AuthRoutes')
 
 app.use('/', sentimentRouter)
+// app.use('/api', AuthRoutes)
 
 
 if(process.env.NODE_ENV === 'production') {

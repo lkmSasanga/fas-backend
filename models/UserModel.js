@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
-const UserRole = require('../enums/UserRole');
 
 const SALT = 10;
 

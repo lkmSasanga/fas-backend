@@ -1,13 +1,13 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+let mongoose = require('mongoose');
+let bcrypt = require('bcrypt');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
 
 const SALT = 10;
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
+let UserSchema = new Schema({
     username: {
         type: String,
         required: [true, 'Username field is required!'],
@@ -28,7 +28,7 @@ var UserSchema = new Schema({
 
 // Saving user data
 UserSchema.pre('save', function (next) {
-    var user = this;
+    let user = this;
     if (user.isModified('password')) {
         //checking if password field is available and modified
         bcrypt.genSalt(SALT, function (err, salt) {
@@ -55,8 +55,8 @@ UserSchema.methods.comparePassword = function (candidatePassword, callBack) {
 
 // For generating token when loggedin
 UserSchema.methods.generateToken = function (callBack) {
-    var user = this;
-    var token = jwt.sign(user._id.toHexString(), process.env.SECRETE);
+    let user = this;
+    let token = jwt.sign(user._id.toHexString(), process.env.SECRETE);
 
     callBack(null, token);
 };

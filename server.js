@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-
+// mongoose.Promise = global.Promise;
 require('dotenv').config()
 
 const bodyParser = require('body-parser');
@@ -18,20 +18,25 @@ connection.once('open', () => {
     console.log('MongoDB database connection established successfully')
 }).on('error', function(err) { console.log('Error', err) })
 
-const sentimentRouter = require('./routes/sentiment')
-const AuthRoutes = require('./routes/AuthRoutes')
+// const sentimentRouter = require('./routes/sentiment')
+// const AuthRoutes = require('./routes/AuthRoutes')
 // const UserModel = require('./models/UserModel')
 
-app.use('/', sentimentRouter)
+// app.use('/', sentimentRouter)
 // app.use('/api', AuthRoutes)
-app.use('./models/UserModel', AuthRoutes)
+// app.use('./models/UserModel', AuthRoutes)
 
-if(process.env.NODE_ENV === 'production') {
+let v1 = require('./routes');
 
-}
+app.use('/', v1.router);
+
+app.use(function(req, res) {
+    res.status(404).send({ url: req.originalUrl + ' not found' })
+});
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
 })
 
 // const db = db.db("itemsDB")
+module.exports = app

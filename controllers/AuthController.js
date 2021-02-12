@@ -22,7 +22,7 @@ exports.registerUser = async(req, res) => {
 exports.loginUser = (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user) {
-            return res.status(404).json({ success: false, message: "User email not found!" });
+            return res.status(404).json({ success: false, message: "Invalid email!" });
         } else {
             user.comparePassword(req.body.password, (err, isMatch) => {
                 //isMatch is eaither true or false

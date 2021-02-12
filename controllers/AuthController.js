@@ -22,12 +22,12 @@ exports.registerUser = async(req, res) => {
 exports.loginUser = (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
         if (!user) {
-            return res.status(404).json({ success: false, message: "Invalid email!" });
+            return res.status(404).json({ success: false, message: "Invalid Email!" });
         } else {
             user.comparePassword(req.body.password, (err, isMatch) => {
                 //isMatch is eaither true or false
                 if (!isMatch) {
-                    return res.status(400).json({ success: false, message: "Wrong Password!" });
+                    return res.status(400).json({ success: false, message: "Invalid Password!" });
                 } else {
                     user.generateToken((err, token) => {
                         if (err) {

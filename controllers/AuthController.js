@@ -8,7 +8,7 @@ exports.registerUser = async(req, res) => {
             return res.status(422).json({
                 success: false,
                 message: "Registration failed check validation errors!",
-                data: err
+                data: err.message
             });
         } else {
             return res.status(200).json({

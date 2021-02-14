@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const bcrypt = require('bcrypt');
-
-let Sentiment = require('../models/sentiment.model')
-const AuthController = require("../controllers/AuthController");
-const Registration =require('../models/UserModel');
+// const bcrypt = require('bcrypt');
+//
+// let Sentiment = require('../models/sentiment.model')
+// const AuthController = require("../controllers/AuthController");
+// const Registration =require('../models/UserModel');
 
 // // end point localhost:5000/
 // router.route('/sentiment').get((req, res) => {
